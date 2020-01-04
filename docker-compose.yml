@@ -21,9 +21,9 @@ services:
             - "${PL_SERVER_PORT:-3000}:3000"
             - "${PL_BILLING_PORT:-4000}:4000"
         volumes:
-            - ./data:/data
-            - ./docs:/docs
-            - ./logs:/logs
+            - db-vol-1:/data
+            - docs-vol-1:/docs
+            - logs-vol-1:/logs
         networks:
           internal:
             aliases:
@@ -40,7 +40,7 @@ services:
         ports:
             - "${PL_PWA_PORT:-8080}:8080"
         volumes:
-            - ./pwa:/pwa
+            - pwa-vol-1:/pwa
         networks:
           internal:
             aliases:
@@ -52,4 +52,10 @@ networks:
     driver: bridge
     driver_opts:
       com.docker.network.bridge.name: br-padloc
+
+volumes:
+  logs-vol-1:
+  db-vol-1:
+  pwa-vol-1:
+  docs-vol-1:
 
