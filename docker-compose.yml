@@ -24,6 +24,10 @@ services:
             - ./data:/data
             - ./docs:/docs
             - ./logs:/logs
+        networks:
+          internal:
+            aliases:
+              - server
     pwa:
         build:
             context: .
@@ -37,5 +41,15 @@ services:
             - "${PL_PWA_PORT:-8080}:8080"
         volumes:
             - ./pwa:/pwa
+        networks:
+          internal:
+            aliases:
+              - pwa
         command: ["build_and_start"]
+
+networks:
+  internal:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: br-padloc
 
