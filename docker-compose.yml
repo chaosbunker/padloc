@@ -33,6 +33,7 @@ services:
             context: .
             dockerfile: Dockerfile-pwa
         environment:
+            - PL_SUPPORT_EMAIL
             - PL_SERVER_URL
             - PL_PWA_URL
             - PL_BILLING_ENABLED
